@@ -1,63 +1,46 @@
 
-document.addEventListener('DOMContentLoaded', function () {
-  fetch('arquivos.csv')
-    .then(response => response.text())
-    .then(data => {
-      const linhas = data.split('\n').slice(1);
-      const arquivos = linhas.map(linha => {
-        const [arquivo, link, assunto, disciplina, tipo, ano] = linha.split(',');
-        return { arquivo, link, assunto, disciplina, tipo, ano };
-      });
+async function carregarCSV() {
+  const resposta = await fetch("arquivos.csv");
+  const texto = await resposta.text();
+  const linhas = texto.split("\n").slice(1); // ignora cabeçalho
+  return linhas.map(linha => {
+    const partes = linha.split(",");
+    return {
+      nome: partes[0]?.trim(),
+      link: partes[1]?.trim(),
+      pasta: partes[2]?.trim()
+    };
+  });
+}
 
-      const inputBusca = document.querySelector('input');
-      const resultados = document.createElement('div');
-      document.body.appendChild(resultados);
+function buscar(arquivos, termo) {
+  termo = termo.toLowerCase();
+  return arquivos.filter(arq =>
+    arq.nome.toLowerCase().includes(termo) ||
+    arq.pasta.toLowerCase().includes(termo)
+  );
+}
 
-      inputBusca.addEventListener('input', function () {
-        const termo = this.value.toLowerCase();
-        resultados.innerHTML = '';
+function exibirResultados(resultados) {
+  const ul = document.getElementById("resultados");
+  ul.innerHTML = "";
+  resultados.forEach(arq => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong><i class="fas fa-file-alt"></i> ${arq.nome}</strong>
+      <a class="btn" href="${arq.link}" target="_blank"><i class="fas fa-link"></i> Acessar</a>
+      <small><i class="fas fa-folder-open"></i> ${arq.pasta}</small>
+    `;
+    ul.appendChild(li);
+  });
+}
 
-        const encontrados = arquivos.filter(arq =>
-          arq.arquivo.toLowerCase().includes(termo) ||
-          arq.assunto.toLowerCase().includes(termo) ||
-          arq.disciplina.toLowerCase().includes(termo) ||
-          arq.tipo.toLowerCase().includes(termo) ||
-          arq.ano.toLowerCase().includes(termo)
-        );
-
-        encontrados.forEach(({ arquivo, link, assunto, disciplina, tipo, ano }) => {
-          let fileIcon = '📄';
-          if (arquivo.toLowerCase().endsWith('.pdf')) {
-            fileIcon = '📕';
-          } else if (arquivo.toLowerCase().endsWith('.doc') || arquivo.toLowerCase().endsWith('.docx')) {
-            fileIcon = '📄';
-          } else if (arquivo.toLowerCase().endsWith('.xls') || arquivo.toLowerCase().endsWith('.xlsx')) {
-            fileIcon = '📊';
-          } else if (arquivo.toLowerCase().endsWith('.png') || arquivo.toLowerCase().endsWith('.jpg') || arquivo.toLowerCase().endsWith('.jpeg')) {
-            fileIcon = '🖼️';
-          }
-
-          const card = document.createElement('div');
-          card.style = 'background:#f8f9fa;padding:16px;border-left:6px solid #3b82f6;border-radius:12px;margin-bottom:12px';
-
-          card.innerHTML = \`
-            <div style="display:flex;align-items:center;gap:12px;">
-              <div style="font-size:28px;">\${fileIcon}</div>
-              <div>
-                <div style="font-weight:bold;font-size:20px;">
-                  \${arquivo}
-                  <a href="\${link}" target="_blank" style="margin-left:12px; font-size:14px; padding:4px 12px; background:#3b82f6; color:#fff; text-decoration:none; border-radius:6px; display:inline-flex; align-items:center; gap:6px;">
-                    🔗 Acessar
-                  </a>
-                </div>
-                <div style="color:#555; margin-top:4px;">
-                  📁 \${assunto} / \${disciplina} / \${tipo}
-                </div>
-              </div>
-            </div>
-          \`;
-          resultados.appendChild(card);
-        });
-      });
-    });
-});
+(async () => {
+  const arquivos = await carregarCSV();
+  const input = document.getElementById("busca");
+  input.addEventListener("input", e => {
+    const termo = e.target.value;
+    const encontrados = buscar(arquivos, termo);
+    exibirResultados(encontrados);
+  });
+})();
