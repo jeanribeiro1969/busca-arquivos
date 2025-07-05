@@ -1,124 +1,83 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buscar Arquivos</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-    }
-    .container {
-      max-width: 700px;
-      width: 100%;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-    h1 {
-      margin-bottom: 1rem;
-    }
-    .search-bar {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      border: 2px solid #3b82f6;
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
-    }
-    .search-bar input {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-    }
-    .tags {
-      margin-bottom: 1rem;
-    }
-    .tags span {
-      color: #2563eb;
-      margin-right: 1rem;
-      cursor: pointer;
-    }
-    .card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      border-top: 1px solid #eee;
-    }
-    .card:first-child {
-      border-top: none;
-    }
-    .info {
-      display: flex;
-      gap: 1rem;
-    }
-    .icon {
-      font-size: 2rem;
-    }
-    .meta {
-      font-size: 0.9rem;
-      color: #666;
-    }
-    .btn {
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Buscar Arquivos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 720px;
+            margin: auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .result {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #f1f3f5;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .result i {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            color: #495057;
+        }
+        .result-details {
+            flex: 1;
+        }
+        .result-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.2rem;
+        }
+        .result-meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .btn {
+            background: #2f80ed;
+            color: #fff;
+            padding: 0.4rem 1rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #1c64d1;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Buscar Arquivos</h1>
-    <div class="search-bar">
-      <input type="text" placeholder="Buscar por título, assunto ou disciplina...">
+    <div class="container">
+        <h1>Buscar Arquivos</h1>
+        <input type="text" id="searchInput" placeholder="Buscar por título, assunto ou disciplina...">
+        <div id="results"></div>
     </div>
-    <div class="tags">
-      <span>matrizes</span>
-      <span>prova uem 2022</span>
-      <span>lista 1.º ano</span>
-    </div>
-    <div class="card">
-      <div class="info">
-        <div class="icon">📄</div>
-        <div>
-          <div><strong>Lista 02 – Geometria Espacial</strong></div>
-          <div class="meta">Matemática › 3.º ano › Listas</div>
-        </div>
-      </div>
-      <button class="btn">Abrir</button>
-    </div>
-    <div class="card">
-      <div class="info">
-        <div class="icon">📄</div>
-        <div>
-          <div><strong>Prova UEM 2022</strong></div>
-          <div class="meta">Física › Vestibular › Provas</div>
-        </div>
-      </div>
-      <button class="btn">Abrir</button>
-    </div>
-    <div class="card">
-      <div class="info">
-        <div class="icon">📄</div>
-        <div>
-          <div><strong>Resumo – A Cidadania</strong></div>
-          <div class="meta">Redação › Vestibular › Resumos</div>
-        </div>
-      </div>
-      <button class="btn">Abrir</button>
-    </div>
-  </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
