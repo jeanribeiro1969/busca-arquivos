@@ -1,7 +1,8 @@
+
 async function carregarCSV() {
   const resposta = await fetch("arquivos.csv");
   const texto = await resposta.text();
-  const linhas = texto.split("\n").slice(1); // pula cabeçalho
+  const linhas = texto.split("\n").slice(1); // ignora cabeçalho
   return linhas.map(linha => {
     const partes = linha.split(",");
     return {
@@ -25,16 +26,19 @@ function exibirResultados(resultados) {
   ul.innerHTML = "";
   resultados.forEach(arq => {
     const li = document.createElement("li");
-    li.innerHTML = `<strong>${arq.nome}</strong><br>
-      <a href="${arq.link}" target="_blank">Acessar arquivo</a><br>
-      <small>${arq.pasta}</small>`;
+    li.innerHTML = `
+      <strong><i class="fas fa-file-alt"></i> ${arq.nome}</strong>
+      <a class="btn" href="${arq.link}" target="_blank"><i class="fas fa-link"></i> Acessar</a>
+      <small><i class="fas fa-folder-open"></i> ${arq.pasta}</small>
+    `;
     ul.appendChild(li);
   });
 }
 
 (async () => {
   const arquivos = await carregarCSV();
-  document.getElementById("busca").addEventListener("input", e => {
+  const input = document.getElementById("busca");
+  input.addEventListener("input", e => {
     const termo = e.target.value;
     const encontrados = buscar(arquivos, termo);
     exibirResultados(encontrados);
