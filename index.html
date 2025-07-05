@@ -1,15 +1,124 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Busca de Arquivos</title>
+  <title>Buscar Arquivos</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      border: 2px solid #3b82f6;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+    }
+    .search-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+    .tags {
+      margin-bottom: 1rem;
+    }
+    .tags span {
+      color: #2563eb;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+    .card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-top: 1px solid #eee;
+    }
+    .card:first-child {
+      border-top: none;
+    }
+    .info {
+      display: flex;
+      gap: 1rem;
+    }
+    .icon {
+      font-size: 2rem;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .btn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h2>🔍 Buscar Arquivos</h2>
-  <input type="text" id="busca" placeholder="Digite palavras-chave..." />
-  <ul id="resultados"></ul>
-
-  <script src="script.js"></script>
+  <div class="container">
+    <h1>Buscar Arquivos</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar por título, assunto ou disciplina...">
+    </div>
+    <div class="tags">
+      <span>matrizes</span>
+      <span>prova uem 2022</span>
+      <span>lista 1.º ano</span>
+    </div>
+    <div class="card">
+      <div class="info">
+        <div class="icon">📄</div>
+        <div>
+          <div><strong>Lista 02 – Geometria Espacial</strong></div>
+          <div class="meta">Matemática › 3.º ano › Listas</div>
+        </div>
+      </div>
+      <button class="btn">Abrir</button>
+    </div>
+    <div class="card">
+      <div class="info">
+        <div class="icon">📄</div>
+        <div>
+          <div><strong>Prova UEM 2022</strong></div>
+          <div class="meta">Física › Vestibular › Provas</div>
+        </div>
+      </div>
+      <button class="btn">Abrir</button>
+    </div>
+    <div class="card">
+      <div class="info">
+        <div class="icon">📄</div>
+        <div>
+          <div><strong>Resumo – A Cidadania</strong></div>
+          <div class="meta">Redação › Vestibular › Resumos</div>
+        </div>
+      </div>
+      <button class="btn">Abrir</button>
+    </div>
+  </div>
 </body>
 </html>
