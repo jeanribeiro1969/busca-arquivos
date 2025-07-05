@@ -2,82 +2,79 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Buscar Arquivos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f8f9fa;
-            margin: 0;
-            padding: 2rem;
-        }
-        .container {
-            max-width: 720px;
-            margin: auto;
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-        .result {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: #f1f3f5;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        .result i {
-            font-size: 1.8rem;
-            margin-right: 1rem;
-            color: #495057;
-        }
-        .result-details {
-            flex: 1;
-        }
-        .result-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 0.2rem;
-        }
-        .result-meta {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        .btn {
-            background: #2f80ed;
-            color: #fff;
-            padding: 0.4rem 1rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
-        .btn:hover {
-            background: #1c64d1;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buscar Arquivos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 720px;
+      margin: auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    #busca {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    ul#resultados {
+      list-style: none;
+      padding: 0;
+    }
+    ul#resultados li {
+      background: #f8f9fa;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-left: 5px solid #3b82f6;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    ul#resultados li strong {
+      font-size: 1.1rem;
+      color: #1e3a8a;
+    }
+    ul#resultados li a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: #3b82f6;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    ul#resultados li small {
+      display: block;
+      margin-top: 0.4rem;
+      color: #666;
+      font-size: 0.85rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Buscar Arquivos</h1>
-        <input type="text" id="searchInput" placeholder="Buscar por título, assunto ou disciplina...">
-        <div id="results"></div>
-    </div>
+  <div class="container">
+    <h1><i class="fas fa-search"></i> Buscar Arquivos</h1>
+    <input type="text" id="busca" placeholder="Digite parte do nome ou assunto...">
+    <ul id="resultados"></ul>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
